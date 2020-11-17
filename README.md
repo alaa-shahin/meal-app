@@ -14,3 +14,7 @@ $ git clone https://github.com/alaa-shahin/meal.git
  - Build APK File.
  - Transfer the generated apk to Android/IOS mobile device.
  - Install the apk and open the app.
+
+## Screenshots:
+
+![Splash Screen](https://github.com/alaa-shahin/meal/blob/master/meal%20app%20screenshots/splash.png "Splash Screen") ![Onboarding Screen](https://github.com/alaa-shahin/meal/blob/master/meal%20app%20screenshots/on-baording.png "Onboarding Screen") ![Categories Screen](https://github.com/alaa-shahin/meal/blob/master/meal%20app%20screenshots/categories%20page.png "Categories Screen") ![Category Screen](https://github.com/alaa-shahin/meal/blob/master/meal%20app%20screenshots/category%20page.png "Category Screen") ![Product Details Page](https://github.com/alaa-shahin/meal/blob/master/meal%20app%20screenshots/pdp.png "Product Details Page") ![Favorites Page](https://github.com/alaa-shahin/meal/blob/master/meal%20app%20screenshots/favorites.png "Favorites Page") ![Settings Page](https://github.com/alaa-shahin/meal/blob/master/meal%20app%20screenshots/settings.png "Settings Page") ![Filters Page](https://github.com/alaa-shahin/meal/blob/master/meal%20app%20screenshots/filters.png "Filters Page") ![Themes Page](https://github.com/alaa-shahin/meal/blob/master/meal%20app%20screenshots/themes.png "Themes Page")
