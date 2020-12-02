@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:meal_app/providers/language_provider.dart';
 import 'package:meal_app/providers/meal_provider.dart';
 import 'package:meal_app/providers/theme_provider.dart';
+import 'package:meal_app/screens/tabs_screen.dart';
 import 'package:provider/provider.dart';
 import '../widgets/main_drawer.dart';
 
@@ -54,123 +55,131 @@ class _FiltersScreenState extends State<FiltersScreen> {
     );
   }
 
+  Future<bool> _onWillPop() {
+    return Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (BuildContext context) => TabsScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     var lan = Provider.of<LanguageProvider>(context, listen: true);
-    return Directionality(
-      textDirection: lan.isEn ? TextDirection.ltr : TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(lan.getTexts('filters_appBar_title')),
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(
-                top: 15,
-                bottom: 0,
-                right: 0,
-                left: 10,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Directionality(
+        textDirection: lan.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(lan.getTexts('filters_appBar_title')),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 15,
+                  bottom: 0,
+                  right: 0,
+                  left: 10,
+                ),
+                child: Text(
+                  lan.getTexts('Save'),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
               ),
-              child: Text(
-                lan.getTexts('Save'),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-            ),
-            Builder(builder: (BuildContext ctx) {
-              return IconButton(
-                iconSize: 30,
-                icon: Icon(Icons.save),
-                onPressed: () {
-                  final selectedFilters = {
-                    'gluten': _glutenFree,
-                    'lactose': _lactoseFree,
-                    'vegan': _vegan,
-                    'vegetarian': _vegetarian,
-                  };
-                  Provider.of<MealProvider>(context, listen: false)
-                      .setFilters(selectedFilters);
-                  Scaffold.of(ctx).showSnackBar(new SnackBar(
-                    content: new Text(
-                      lan.getTexts('Saved successfully'),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+              Builder(builder: (BuildContext ctx) {
+                return IconButton(
+                  iconSize: 30,
+                  icon: Icon(Icons.save),
+                  onPressed: () {
+                    final selectedFilters = {
+                      'gluten': _glutenFree,
+                      'lactose': _lactoseFree,
+                      'vegan': _vegan,
+                      'vegetarian': _vegetarian,
+                    };
+                    Provider.of<MealProvider>(context, listen: false)
+                        .setFilters(selectedFilters);
+                    Scaffold.of(ctx).showSnackBar(new SnackBar(
+                      content: new Text(
+                        lan.getTexts('Saved successfully'),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      elevation: 2,
+                      backgroundColor: Colors.pink,
+                      duration: Duration(seconds: 2),
+                    ));
+                  },
+                );
+              }),
+            ],
+          ),
+          drawer: MainDrawer(),
+          body: Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  lan.getTexts('filters_screen_title'),
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+              ),
+              Expanded(
+                child: ListView(
+                  children: <Widget>[
+                    _buildSwitchListTile(
+                      lan.getTexts('Gluten-free'),
+                      lan.getTexts('Gluten-free-sub'),
+                      _glutenFree,
+                      (newValue) {
+                        setState(
+                          () {
+                            _glutenFree = newValue;
+                          },
+                        );
+                      },
                     ),
-                    elevation: 2,
-                    backgroundColor: Colors.pink,
-                    duration: Duration(seconds: 2),
-                  ));
-                },
-              );
-            }),
-          ],
-        ),
-        drawer: MainDrawer(),
-        body: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                lan.getTexts('filters_screen_title'),
-                style: Theme.of(context).textTheme.headline6,
+                    _buildSwitchListTile(
+                      lan.getTexts('Lactose-free'),
+                      lan.getTexts('Lactose-free_sub'),
+                      _lactoseFree,
+                      (newValue) {
+                        setState(
+                          () {
+                            _lactoseFree = newValue;
+                          },
+                        );
+                      },
+                    ),
+                    _buildSwitchListTile(
+                      lan.getTexts('Vegetarian'),
+                      lan.getTexts('Vegetarian-sub'),
+                      _vegetarian,
+                      (newValue) {
+                        setState(
+                          () {
+                            _vegetarian = newValue;
+                          },
+                        );
+                      },
+                    ),
+                    _buildSwitchListTile(
+                      lan.getTexts('Vegan'),
+                      lan.getTexts('Vegan-sub'),
+                      _vegan,
+                      (newValue) {
+                        setState(
+                          () {
+                            _vegan = newValue;
+                          },
+                        );
+                      },
+                    )
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: ListView(
-                children: <Widget>[
-                  _buildSwitchListTile(
-                    lan.getTexts('Gluten-free'),
-                    lan.getTexts('Gluten-free-sub'),
-                    _glutenFree,
-                    (newValue) {
-                      setState(
-                        () {
-                          _glutenFree = newValue;
-                        },
-                      );
-                    },
-                  ),
-                  _buildSwitchListTile(
-                    lan.getTexts('Lactose-free'),
-                    lan.getTexts('Lactose-free_sub'),
-                    _lactoseFree,
-                    (newValue) {
-                      setState(
-                        () {
-                          _lactoseFree = newValue;
-                        },
-                      );
-                    },
-                  ),
-                  _buildSwitchListTile(
-                    lan.getTexts('Vegetarian'),
-                    lan.getTexts('Vegetarian-sub'),
-                    _vegetarian,
-                    (newValue) {
-                      setState(
-                        () {
-                          _vegetarian = newValue;
-                        },
-                      );
-                    },
-                  ),
-                  _buildSwitchListTile(
-                    lan.getTexts('Vegan'),
-                    lan.getTexts('Vegan-sub'),
-                    _vegan,
-                    (newValue) {
-                      setState(
-                        () {
-                          _vegan = newValue;
-                        },
-                      );
-                    },
-                  )
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

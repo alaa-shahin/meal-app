@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/providers/language_provider.dart';
 import 'package:meal_app/providers/theme_provider.dart';
-import 'package:meal_app/screens/on_boarding_screen.dart';
+import 'package:meal_app/screens/categories_screen.dart';
 import 'package:meal_app/screens/splash_screens.dart';
 import 'package:meal_app/screens/theme_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import './screens/tabs_screen.dart';
 import './screens/meal_detail_screen.dart';
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
     var tm = Provider.of<ThemeProvider>(context, listen: true).tm;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Restaurant',
+      title: 'Food Recipes',
       themeMode: tm,
       theme: ThemeData(
         primarySwatch: primaryColor,
@@ -85,8 +84,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       // default is '/'
       routes: {
-        '/': (ctx) => OnBoardingScreen(),
         TabsScreen.routeName: (ctx) => TabsScreen(),
+        CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
         FiltersScreen.routeName: (ctx) => FiltersScreen(),

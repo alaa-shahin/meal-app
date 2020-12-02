@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:meal_app/screens/on_boarding_screen.dart';
-import 'package:meal_app/screens/tabs_screen.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 import '../main.dart';
@@ -25,7 +23,6 @@ class _SplashScreensState extends State<SplashScreens> {
             routeName: '/',
             backgroundColor: Colors.lightBlueAccent,
             imageBackground: AssetImage('assets/images/a1.png'),
-            photoSize: 180,
             seconds: 2,
             loadingText: Text('Loading...'),
             loaderColor: Colors.yellow,
