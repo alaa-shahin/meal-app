@@ -6,31 +6,31 @@ import './models/meal.dart';
 const DUMMY_CATEGORIES = const [
   Category(
     id: 'c1',
-    color: Colors.purple,
+    color: Colors.brown,
   ),
   Category(
     id: 'c2',
-    color: Colors.red,
+    color: Colors.redAccent,
   ),
   Category(
     id: 'c3',
-    color: Colors.orange,
+    color: Colors.orangeAccent,
   ),
   Category(
     id: 'c4',
-    color: Colors.amber,
+    color: Colors.amberAccent,
   ),
   Category(
     id: 'c5',
-    color: Colors.blue,
+    color: Colors.blueAccent,
   ),
   Category(
     id: 'c6',
-    color: Colors.green,
+    color: Colors.blueGrey,
   ),
   Category(
     id: 'c7',
-    color: Colors.lightBlue,
+    color: Colors.grey,
   ),
   Category(
     id: 'c8',
@@ -38,11 +38,51 @@ const DUMMY_CATEGORIES = const [
   ),
   Category(
     id: 'c9',
-    color: Colors.pink,
+    color: Colors.pinkAccent,
   ),
   Category(
     id: 'c10',
     color: Colors.teal,
+  ),
+  Category(
+    id: 'c11',
+    color: Colors.greenAccent,
+  ),
+  Category(
+    id: 'c12',
+    color: Colors.deepPurple,
+  ),
+  Category(
+    id: 'c13',
+    color: Colors.indigo,
+  ),
+  Category(
+    id: 'c14',
+    color: Colors.black26,
+  ),
+  Category(
+    id: 'c15',
+    color: Colors.limeAccent,
+  ),
+  Category(
+    id: 'c16',
+    color: Colors.purple,
+  ),
+  Category(
+    id: 'c17',
+    color: Colors.blueGrey,
+  ),
+  Category(
+    id: 'c18',
+    color: Colors.deepOrangeAccent,
+  ),
+  Category(
+    id: 'c19',
+    color: Colors.deepPurpleAccent,
+  ),
+  Category(
+    id: 'c20',
+    color: Colors.lightBlueAccent,
   ),
 ];
 
@@ -51,44 +91,40 @@ const DUMMY_MEALS = const [
     id: 'm1',
     categories: [
       'c1',
-      'c2',
     ],
     affordability: Affordability.Affordable,
     complexity: Complexity.Simple,
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
-    duration: 20,
-    isGlutenFree: false,
-    isVegan: true,
-    isVegetarian: true,
+    imageUrl: 'https://img.youm7.com/xlarge/201709041040504050.jpg',
+    duration: 40,
+    isGlutenFree: true,
+    isVegan: false,
+    isVegetarian: false,
     isLactoseFree: true,
   ),
   Meal(
     id: 'm2',
     categories: [
-      'c2',
+      'c1',
     ],
     affordability: Affordability.Affordable,
     complexity: Complexity.Simple,
-    imageUrl:
-        'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
-    duration: 10,
-    isGlutenFree: false,
-    isVegan: false,
-    isVegetarian: false,
-    isLactoseFree: false,
+    imageUrl: 'https://www.justfood.tv/big/0RISOTTO.RECIPE.HOW.TO.facebook.jpg',
+    duration: 40,
+    isGlutenFree: true,
+    isVegan: true,
+    isVegetarian: true,
+    isLactoseFree: true,
   ),
   Meal(
     id: 'm3',
     categories: [
-      'c2',
-      'c3',
+      'c1',
     ],
-    affordability: Affordability.Pricey,
+    affordability: Affordability.Affordable,
     complexity: Complexity.Simple,
     imageUrl:
-        'https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg',
-    duration: 45,
+        'https://img.atyabtabkha.com/wtKJiomqjA4ApzRoeF4cpdH8Wko=/0x0/smart/https://harmony-assets-live.s3.amazonaws.com/image_source/cf/40/cf40143194aaffd3d51dc4492fcff24515df8d60.jpg',
+    duration: 30,
     isGlutenFree: false,
     isVegan: false,
     isVegetarian: false,

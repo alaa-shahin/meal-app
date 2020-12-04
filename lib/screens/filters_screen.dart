@@ -103,11 +103,15 @@ class _FiltersScreenState extends State<FiltersScreen> {
                         style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
                       elevation: 2,
-                      backgroundColor: Colors.pink,
+                      backgroundColor: Colors.greenAccent,
                       duration: Duration(seconds: 2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ));
                   },
                 );

@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:flutter/material.dart';
 import 'package:meal_app/providers/language_provider.dart';
@@ -15,36 +15,31 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  Future<bool> _onWillPop() {
-    return showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Are you sure?'),
-            content: Text('Do you want to exit an App'),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: Text('No'),
-              ),
-              FlatButton(
-                onPressed: () => exit(0),
-                /*Navigator.of(context).pop(true)*/
-                child: Text('Yes'),
-              ),
-            ],
-          ),
-        ) ??
-        false;
-  }
-
   @override
   Widget build(BuildContext context) {
     var lan = Provider.of<LanguageProvider>(context, listen: true);
-
-    return WillPopScope(
-      onWillPop: _onWillPop,
-      child: Directionality(
-        textDirection: lan.isEn ? TextDirection.ltr : TextDirection.rtl,
+    DateTime _lastPressedAt;
+    return Directionality(
+      textDirection: lan.isEn ? TextDirection.ltr : TextDirection.rtl,
+      child: WillPopScope(
+        onWillPop: () async {
+          if (_lastPressedAt == null ||
+              DateTime.now().difference(_lastPressedAt) >
+                  Duration(seconds: 1)) {
+            Fluttertoast.showToast(
+              fontSize: 15,
+              msg: lan.getTexts("Tap back again to leave"),
+              toastLength: Toast.LENGTH_SHORT,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              backgroundColor: Colors.black87,
+              gravity: ToastGravity.BOTTOM,
+            );
+            _lastPressedAt = DateTime.now();
+            return false;
+          }
+          return true;
+        },
         child: Scaffold(
           body: GridView(
             padding: EdgeInsets.all(25),
@@ -58,9 +53,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 )
                 .toList(),
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
+              maxCrossAxisExtent: 250,
               childAspectRatio: 3 / 2,
-              crossAxisSpacing: 20,
+              crossAxisSpacing: 10,
               mainAxisSpacing: 20,
             ),
           ),
