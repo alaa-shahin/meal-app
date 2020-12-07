@@ -16,6 +16,7 @@ class Meal {
   final String id;
   final List<String> categories;
   final String imageUrl;
+  final String videoUrl;
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
@@ -28,6 +29,7 @@ class Meal {
     @required this.id,
     @required this.categories,
     @required this.imageUrl,
+    this.videoUrl,
     @required this.duration,
     @required this.complexity,
     @required this.affordability,

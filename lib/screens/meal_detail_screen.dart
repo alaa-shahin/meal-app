@@ -1,3 +1,4 @@
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meal_app/providers/language_provider.dart';
@@ -5,9 +6,14 @@ import 'package:meal_app/providers/meal_provider.dart';
 import 'package:provider/provider.dart';
 import '../dummy_data.dart';
 
-class MealDetailScreen extends StatelessWidget {
+class MealDetailScreen extends StatefulWidget {
   static const routeName = '/meal-detail';
 
+  @override
+  _MealDetailScreenState createState() => _MealDetailScreenState();
+}
+
+class _MealDetailScreenState extends State<MealDetailScreen> {
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -36,6 +42,34 @@ class MealDetailScreen extends StatelessWidget {
       height: isLandScape ? dh * 0.5 : dh * 0.20,
       width: isLandScape ? (dw * 0.5 - 30) : dw,
       child: child,
+    );
+  }
+
+  Widget buildVideo() {
+    final mealId = ModalRoute.of(context).settings.arguments as String;
+    var url = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
+    YoutubePlayerController _controller = YoutubePlayerController(
+      initialVideoId: YoutubePlayer.convertUrlToId(url.videoUrl),
+      flags: YoutubePlayerFlags(
+        autoPlay: false,
+        mute: false,
+        disableDragSeek: false,
+        loop: false,
+        forceHD: false,
+        isLive: false,
+      ),
+    );
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.blueGrey,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.all(10),
+      child: YoutubePlayer(
+        controller: _controller,
+        liveUIColor: Colors.amber,
+      ),
     );
   }
 
@@ -138,25 +172,34 @@ class MealDetailScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                  if (isLandScape) buildVideo(),
                   if (!isLandScape)
                     buildSectionTitle(context, lan.getTexts('Ingredients')),
                   if (!isLandScape) buildContainer(liIngredients, context),
                   if (!isLandScape)
                     buildSectionTitle(context, lan.getTexts('Steps')),
                   if (!isLandScape) buildContainer(liSteps, context),
+                  if (!isLandScape) buildVideo(),
                 ],
               ),
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(
-            Provider.of<MealProvider>(context, listen: true).isFavorite(mealId)
-                ? Icons.star
-                : Icons.star_border,
+        floatingActionButton: Container(
+          padding: EdgeInsets.only(bottom: 50.0),
+          child: Align(
+            alignment: Alignment.bottomLeft,
+            child: FloatingActionButton(
+              child: Icon(
+                Provider.of<MealProvider>(context, listen: true)
+                        .isFavorite(mealId)
+                    ? Icons.star
+                    : Icons.star_border,
+              ),
+              onPressed: () => Provider.of<MealProvider>(context, listen: false)
+                  .toggleFavorite(mealId),
+            ),
           ),
-          onPressed: () => Provider.of<MealProvider>(context, listen: false)
-              .toggleFavorite(mealId),
         ),
       ),
     );

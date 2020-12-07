@@ -44,46 +44,6 @@ const DUMMY_CATEGORIES = const [
     id: 'c10',
     color: Colors.teal,
   ),
-  Category(
-    id: 'c11',
-    color: Colors.greenAccent,
-  ),
-  Category(
-    id: 'c12',
-    color: Colors.deepPurple,
-  ),
-  Category(
-    id: 'c13',
-    color: Colors.indigo,
-  ),
-  Category(
-    id: 'c14',
-    color: Colors.black26,
-  ),
-  Category(
-    id: 'c15',
-    color: Colors.limeAccent,
-  ),
-  Category(
-    id: 'c16',
-    color: Colors.purple,
-  ),
-  Category(
-    id: 'c17',
-    color: Colors.blueGrey,
-  ),
-  Category(
-    id: 'c18',
-    color: Colors.deepOrangeAccent,
-  ),
-  Category(
-    id: 'c19',
-    color: Colors.deepPurpleAccent,
-  ),
-  Category(
-    id: 'c20',
-    color: Colors.lightBlueAccent,
-  ),
 ];
 
 const DUMMY_MEALS = const [
@@ -95,6 +55,7 @@ const DUMMY_MEALS = const [
     affordability: Affordability.Affordable,
     complexity: Complexity.Simple,
     imageUrl: 'https://img.youm7.com/xlarge/201709041040504050.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=clg5bamBwRM',
     duration: 40,
     isGlutenFree: true,
     isVegan: false,
@@ -109,6 +70,7 @@ const DUMMY_MEALS = const [
     affordability: Affordability.Affordable,
     complexity: Complexity.Simple,
     imageUrl: 'https://www.justfood.tv/big/0RISOTTO.RECIPE.HOW.TO.facebook.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=UMu2DBTkfBw',
     duration: 40,
     isGlutenFree: true,
     isVegan: true,
@@ -124,6 +86,7 @@ const DUMMY_MEALS = const [
     complexity: Complexity.Simple,
     imageUrl:
         'https://img.atyabtabkha.com/wtKJiomqjA4ApzRoeF4cpdH8Wko=/0x0/smart/https://harmony-assets-live.s3.amazonaws.com/image_source/cf/40/cf40143194aaffd3d51dc4492fcff24515df8d60.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=EMRmwcAxbtc',
     duration: 30,
     isGlutenFree: false,
     isVegan: false,
@@ -133,75 +96,76 @@ const DUMMY_MEALS = const [
   Meal(
     id: 'm4',
     categories: [
-      'c4',
+      'c2',
     ],
     affordability: Affordability.Luxurious,
     complexity: Complexity.Challenging,
     imageUrl:
-        'https://cdn.pixabay.com/photo/2018/03/31/19/29/schnitzel-3279045_1280.jpg',
-    duration: 60,
-    isGlutenFree: false,
+        'https://cdn.sotor.com/thumbs/fit630x300/24094/1580831969/%D8%B7%D8%B1%D9%8A%D9%82%D8%A9_%D8%B9%D9%85%D9%84_%D8%A7%D9%84%D8%AC%D9%85%D8%A8%D8%B1%D9%8A_%D8%A8%D8%A7%D9%84%D8%AB%D9%88%D9%85_%D9%88%D8%A7%D9%84%D9%84%D9%8A%D9%85%D9%88%D9%86.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=uJgZ8Y5nrKs',
+    duration: 25,
+    isGlutenFree: true,
     isVegan: false,
     isVegetarian: false,
-    isLactoseFree: false,
+    isLactoseFree: true,
   ),
   Meal(
     id: 'm5',
     categories: [
-      'c2'
-          'c5',
-      'c10',
+      'c3',
     ],
-    affordability: Affordability.Luxurious,
+    affordability: Affordability.Affordable,
     complexity: Complexity.Simple,
     imageUrl:
-        'https://cdn.pixabay.com/photo/2016/10/25/13/29/smoked-salmon-salad-1768890_1280.jpg',
-    duration: 15,
+        'https://www.almrahonline.com/wp-content/uploads/2016/06/La-vraie-Salade-ni%C3%A7oise-1280x720.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=VwBpHPI3Euo',
+    duration: 20,
     isGlutenFree: true,
-    isVegan: false,
+    isVegan: true,
     isVegetarian: true,
     isLactoseFree: true,
   ),
   Meal(
     id: 'm6',
     categories: [
-      'c6',
-      'c10',
+      'c4',
     ],
     affordability: Affordability.Affordable,
-    complexity: Complexity.Hard,
-    imageUrl:
-        'https://cdn.pixabay.com/photo/2017/05/01/05/18/pastry-2274750_1280.jpg',
-    duration: 240,
+    complexity: Complexity.Challenging,
+    imageUrl: 'https://img.youm7.com/large/201705220319481948.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=xoe7iTm4iYQ',
+    duration: 35,
     isGlutenFree: true,
-    isVegan: false,
+    isVegan: true,
     isVegetarian: true,
-    isLactoseFree: false,
+    isLactoseFree: true,
   ),
   Meal(
     id: 'm7',
     categories: [
-      'c7',
+      'c5',
     ],
-    affordability: Affordability.Affordable,
-    complexity: Complexity.Simple,
+    affordability: Affordability.Pricey,
+    complexity: Complexity.Challenging,
     imageUrl:
-        'https://cdn.pixabay.com/photo/2018/07/10/21/23/pancake-3529653_1280.jpg',
-    duration: 20,
+        'https://kitchen.sayidaty.net/uploads/small/5c/5c6e1fd7dc889d6f280857270055baa8_w750_h750.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=F9qJE67gtDE',
+    duration: 200,
     isGlutenFree: true,
-    isVegan: false,
+    isVegan: true,
     isVegetarian: true,
     isLactoseFree: false,
   ),
   Meal(
     id: 'm8',
     categories: [
-      'c8',
+      'c7',
     ],
     affordability: Affordability.Pricey,
     complexity: Complexity.Challenging,
     imageUrl:
         'https://cdn.pixabay.com/photo/2018/06/18/16/05/indian-food-3482749_1280.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=Z1EEsLOgSj4',
     duration: 35,
     isGlutenFree: true,
     isVegan: false,
@@ -211,33 +175,65 @@ const DUMMY_MEALS = const [
   Meal(
     id: 'm9',
     categories: [
-      'c9',
+      'c6',
     ],
-    affordability: Affordability.Affordable,
+    affordability: Affordability.Luxurious,
     complexity: Complexity.Hard,
     imageUrl:
-        'https://cdn.pixabay.com/photo/2014/08/07/21/07/souffle-412785_1280.jpg',
-    duration: 45,
+        'https://www.thaqafnafsak.com/wp-content/uploads/2016/03/%D8%AF%D8%AC%D8%A7%D8%AC-%D8%A8%D8%A7%D9%84%D8%B9%D8%B3%D9%84-%D9%88%D8%A7%D9%84%D8%B3%D9%85%D8%B3%D9%85-33.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=HXkGOI2tq0s',
+    duration: 40,
     isGlutenFree: true,
     isVegan: false,
-    isVegetarian: true,
-    isLactoseFree: false,
+    isVegetarian: false,
+    isLactoseFree: true,
   ),
   Meal(
     id: 'm10',
     categories: [
-      'c2',
-      'c5',
       'c10',
     ],
     affordability: Affordability.Luxurious,
     complexity: Complexity.Simple,
     imageUrl:
         'https://cdn.pixabay.com/photo/2018/04/09/18/26/asparagus-3304997_1280.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=tfg9cZqdAm0',
     duration: 30,
     isGlutenFree: true,
     isVegan: true,
     isVegetarian: true,
     isLactoseFree: true,
+  ),
+  Meal(
+    id: 'm11',
+    categories: [
+      'c8',
+    ],
+    affordability: Affordability.Luxurious,
+    complexity: Complexity.Challenging,
+    imageUrl:
+        'https://www.thaqafnafsak.com/wp-content/uploads/%D9%83%D9%8A%D9%81%D9%8A%D8%A9-%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%B3%D9%88%D8%B4%D9%8A-%D8%AB%D9%82%D9%81-%D9%86%D9%81%D8%B3%D9%83-10.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=OS8NMl-1IUc&t=94s',
+    duration: 30,
+    isGlutenFree: true,
+    isVegan: false,
+    isVegetarian: false,
+    isLactoseFree: true,
+  ),
+  Meal(
+    id: 'm12',
+    categories: [
+      'c9',
+    ],
+    affordability: Affordability.Affordable,
+    complexity: Complexity.Simple,
+    imageUrl:
+        'https://shamlola.s3.amazonaws.com/Shamlola_Images/5/src/f8db85f951f16107e79fcd7522791b60a525726a.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=TrGGDl448y0',
+    duration: 30,
+    isGlutenFree: true,
+    isVegan: true,
+    isVegetarian: true,
+    isLactoseFree: false,
   ),
 ];
