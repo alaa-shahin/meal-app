@@ -48,8 +48,15 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
   Widget buildVideo() {
     final mealId = ModalRoute.of(context).settings.arguments as String;
     var url = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
+    var lan = Provider.of<LanguageProvider>(context, listen: true);
+    var x;
+    if (lan.isEn) {
+      x = url.videoUrlEn;
+    } else {
+      x = url.videoUrlAr;
+    }
     YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(url.videoUrl),
+      initialVideoId: YoutubePlayer.convertUrlToId(x),
       flags: YoutubePlayerFlags(
         autoPlay: false,
         mute: false,
