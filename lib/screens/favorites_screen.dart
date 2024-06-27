@@ -14,8 +14,9 @@ class FavoritesScreen extends StatefulWidget {
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
   Future<bool> _onWillPop() {
-    return Navigator.of(context).pushReplacement(
+    Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => TabsScreen()));
+    return Future.value(true);
   }
 
   @override
@@ -32,7 +33,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       return WillPopScope(
         onWillPop: _onWillPop,
         child: Center(
-          child: Text(lan.getTexts('favorites_text')),
+          child: Text(lan.getTexts('favorites_text').toString()),
         ),
       );
     } else {

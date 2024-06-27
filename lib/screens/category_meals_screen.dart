@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meal_app/providers/language_provider.dart';
 import 'package:meal_app/providers/meal_provider.dart';
@@ -14,9 +13,9 @@ class CategoryMealsScreen extends StatefulWidget {
 }
 
 class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
-  List<Meal> displayedMeals;
+  List<Meal>? displayedMeals;
   var _loadedInitData = false;
-  String categoryId;
+  String? categoryId;
 
   @override
   void didChangeDependencies() {
@@ -24,7 +23,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
         Provider.of<MealProvider>(context, listen: true).availableMeals;
     if (!_loadedInitData) {
       final routeArgs =
-          ModalRoute.of(context).settings.arguments as Map<String, String>;
+          ModalRoute.of(context)!.settings.arguments as Map<String, String>;
       categoryId = routeArgs['id'];
       displayedMeals = availableMeals.where((meal) {
         return meal.categories.contains(categoryId);
@@ -44,7 +43,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
       textDirection: lan.isEn ? TextDirection.ltr : TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(lan.getTexts('cat-$categoryId')),
+          title: Text(lan.getTexts('cat-$categoryId').toString()),
         ),
         body: GridView.builder(
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -55,14 +54,14 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
           ),
           itemBuilder: (ctx, index) {
             return MealItem(
-              id: displayedMeals[index].id,
-              imageUrl: displayedMeals[index].imageUrl,
-              duration: displayedMeals[index].duration,
-              affordability: displayedMeals[index].affordability,
-              complexity: displayedMeals[index].complexity,
+              id: displayedMeals![index].id,
+              imageUrl: displayedMeals![index].imageUrl,
+              duration: displayedMeals![index].duration,
+              affordability: displayedMeals![index].affordability,
+              complexity: displayedMeals![index].complexity,
             );
           },
-          itemCount: displayedMeals.length,
+          itemCount: displayedMeals!.length,
         ),
       ),
     );

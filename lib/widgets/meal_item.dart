@@ -13,11 +13,11 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
 
   MealItem({
-    @required this.id,
-    @required this.imageUrl,
-    @required this.affordability,
-    @required this.complexity,
-    @required this.duration,
+    required this.id,
+    required this.imageUrl,
+    required this.affordability,
+    required this.complexity,
+    required this.duration,
   });
 
   void selectMeal(BuildContext context) {
@@ -76,7 +76,7 @@ class MealItem extends StatelessWidget {
                         horizontal: 20,
                       ),
                       child: Text(
-                        lan.getTexts('meal-$id'),
+                        lan.getTexts('meal-$id').toString(),
                         style: TextStyle(
                           fontSize: 26,
                           color: Colors.white,
@@ -98,39 +98,36 @@ class MealItem extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.schedule,
-                        color: Theme.of(context).buttonColor,
                       ),
                       SizedBox(
                         width: 6,
                       ),
                       if (duration <= 10)
-                        Text('$duration ' + lan.getTexts('min2')),
+                        Text('$duration ' + lan.getTexts('min2').toString()),
                       if (duration > 10)
-                        Text('$duration ' + lan.getTexts('min')),
+                        Text('$duration ' + lan.getTexts('min').toString()),
                     ],
                   ),
                   Row(
                     children: <Widget>[
                       Icon(
                         Icons.work,
-                        color: Theme.of(context).buttonColor,
                       ),
                       SizedBox(
                         width: 6,
                       ),
-                      Text(lan.getTexts('$complexity')),
+                      Text(lan.getTexts('$complexity').toString()),
                     ],
                   ),
                   Row(
                     children: <Widget>[
                       Icon(
                         Icons.attach_money,
-                        color: Theme.of(context).buttonColor,
                       ),
                       SizedBox(
                         width: 6,
                       ),
-                      Text(lan.getTexts('$affordability')),
+                      Text(lan.getTexts('$affordability').toString()),
                     ],
                   ),
                 ],

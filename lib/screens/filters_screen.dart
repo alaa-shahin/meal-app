@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:meal_app/providers/language_provider.dart';
 import 'package:meal_app/providers/meal_provider.dart';
 import 'package:meal_app/providers/theme_provider.dart';
@@ -27,10 +26,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
   initState() {
     final Map<String, bool> currentFilters =
         Provider.of<MealProvider>(context, listen: false).filters;
-    _glutenFree = currentFilters['gluten'];
-    _lactoseFree = currentFilters['lactose'];
-    _vegetarian = currentFilters['vegetarian'];
-    _vegan = currentFilters['vegan'];
+    _glutenFree = currentFilters['gluten']!;
+    _lactoseFree = currentFilters['lactose']!;
+    _vegetarian = currentFilters['vegetarian']!;
+    _vegan = currentFilters['vegan']!;
     super.initState();
   }
 
@@ -38,7 +37,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     String title,
     String description,
     bool currentValue,
-    Function updateValue,
+    Function(bool)? updateValue,
   ) {
     return SwitchListTile(
       title: Text(title),
@@ -56,8 +55,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
   }
 
   Future<bool> _onWillPop() {
-    return Navigator.of(context).pushReplacement(
+    Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => TabsScreen()));
+    return Future.value(true);
   }
 
   @override
@@ -69,7 +69,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         textDirection: lan.isEn ? TextDirection.ltr : TextDirection.rtl,
         child: Scaffold(
           appBar: AppBar(
-            title: Text(lan.getTexts('filters_appBar_title')),
+            title: Text(lan.getTexts('filters_appBar_title').toString()),
             actions: <Widget>[
               Padding(
                 padding: EdgeInsets.only(
@@ -79,7 +79,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   left: 10,
                 ),
                 child: Text(
-                  lan.getTexts('Save'),
+                  lan.getTexts('Save').toString(),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
@@ -96,9 +96,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     };
                     Provider.of<MealProvider>(context, listen: false)
                         .setFilters(selectedFilters);
-                    Scaffold.of(ctx).showSnackBar(new SnackBar(
+                    ScaffoldMessenger.of(ctx).showSnackBar(new SnackBar(
                       content: new Text(
-                        lan.getTexts('Saved successfully'),
+                        lan.getTexts('Saved successfully').toString(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 25,
@@ -124,16 +124,16 @@ class _FiltersScreenState extends State<FiltersScreen> {
               Container(
                 padding: EdgeInsets.all(20),
                 child: Text(
-                  lan.getTexts('filters_screen_title'),
-                  style: Theme.of(context).textTheme.headline6,
+                  lan.getTexts('filters_screen_title').toString(),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               Expanded(
                 child: ListView(
                   children: <Widget>[
                     _buildSwitchListTile(
-                      lan.getTexts('Gluten-free'),
-                      lan.getTexts('Gluten-free-sub'),
+                      lan.getTexts('Gluten-free').toString(),
+                      lan.getTexts('Gluten-free-sub').toString(),
                       _glutenFree,
                       (newValue) {
                         setState(
@@ -144,8 +144,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
                       },
                     ),
                     _buildSwitchListTile(
-                      lan.getTexts('Lactose-free'),
-                      lan.getTexts('Lactose-free_sub'),
+                      lan.getTexts('Lactose-free').toString(),
+                      lan.getTexts('Lactose-free_sub').toString(),
                       _lactoseFree,
                       (newValue) {
                         setState(
@@ -156,8 +156,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
                       },
                     ),
                     _buildSwitchListTile(
-                      lan.getTexts('Vegetarian'),
-                      lan.getTexts('Vegetarian-sub'),
+                      lan.getTexts('Vegetarian').toString(),
+                      lan.getTexts('Vegetarian-sub').toString(),
                       _vegetarian,
                       (newValue) {
                         setState(
@@ -168,8 +168,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
                       },
                     ),
                     _buildSwitchListTile(
-                      lan.getTexts('Vegan'),
-                      lan.getTexts('Vegan-sub'),
+                      lan.getTexts('Vegan').toString(),
+                      lan.getTexts('Vegan-sub').toString(),
                       _vegan,
                       (newValue) {
                         setState(

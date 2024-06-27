@@ -46,16 +46,15 @@ class MyApp extends StatelessWidget {
       themeMode: tm,
       theme: ThemeData(
         primarySwatch: primaryColor,
-        accentColor: accentColor,
+        colorScheme: ColorScheme.light(secondary: accentColor),
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
-        buttonColor: Colors.black87,
         cardColor: Colors.white,
         textTheme: ThemeData.light().textTheme.copyWith(
-            bodyText1: TextStyle(
+            bodyLarge: TextStyle(
               color: Color.fromRGBO(20, 50, 50, 1),
             ),
-            headline6: TextStyle(
+            titleLarge: TextStyle(
               color: Colors.black87,
               fontSize: 20,
               fontFamily: 'RobotoCondensed',
@@ -64,17 +63,16 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         primarySwatch: primaryColor,
-        accentColor: accentColor,
+        colorScheme: ColorScheme.dark(secondary: accentColor),
         canvasColor: Color.fromRGBO(14, 22, 33, 1),
         fontFamily: 'Raleway',
-        buttonColor: Colors.white70,
         cardColor: Color.fromRGBO(35, 34, 39, 1),
         unselectedWidgetColor: Colors.white70,
         textTheme: ThemeData.dark().textTheme.copyWith(
-            bodyText1: TextStyle(
+            bodyLarge: TextStyle(
               color: Colors.white,
             ),
-            headline6: TextStyle(
+            titleLarge: TextStyle(
               color: Colors.white70,
               fontSize: 20,
               fontFamily: 'RobotoCondensed',

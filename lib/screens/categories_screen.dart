@@ -18,17 +18,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     var lan = Provider.of<LanguageProvider>(context, listen: true);
-    DateTime _lastPressedAt;
+    DateTime? _lastPressedAt;
     return Directionality(
       textDirection: lan.isEn ? TextDirection.ltr : TextDirection.rtl,
       child: WillPopScope(
         onWillPop: () async {
-          if (_lastPressedAt == null ||
-              DateTime.now().difference(_lastPressedAt) >
+          if (DateTime.now().difference(_lastPressedAt!) >
                   Duration(seconds: 1)) {
             Fluttertoast.showToast(
               fontSize: 15,
-              msg: lan.getTexts("Tap back again to leave"),
+              msg: lan.getTexts("Tap back again to leave").toString(),
               toastLength: Toast.LENGTH_SHORT,
               timeInSecForIosWeb: 1,
               textColor: Colors.white,

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meal_app/providers/language_provider.dart';
 import 'package:meal_app/screens/tabs_screen.dart';
@@ -14,17 +13,16 @@ class MainDrawer extends StatefulWidget {
 
 class _MainDrawerState extends State<MainDrawer> {
   Widget buildListTile(
-      String title, IconData icon, Function tapHandler, BuildContext ctx) {
+      String title, IconData icon, Function()? tapHandler, BuildContext ctx) {
     return ListTile(
       leading: Icon(
         icon,
         size: 26,
-        color: Theme.of(ctx).buttonColor,
       ),
       title: Text(
         title,
         style: TextStyle(
-          color: Theme.of(ctx).textTheme.bodyText1.color,
+          color: Theme.of(ctx).textTheme.bodyLarge!.color,
           fontFamily: 'RobotoCondensed',
           fontSize: 24,
           fontWeight: FontWeight.bold,
@@ -35,8 +33,9 @@ class _MainDrawerState extends State<MainDrawer> {
   }
 
   Future<bool> _onWillPop() {
-    return Navigator.of(context).pushReplacement(
+    Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => TabsScreen()));
+    return Future.value(true);
   }
 
   @override
@@ -57,9 +56,9 @@ class _MainDrawerState extends State<MainDrawer> {
                   padding: EdgeInsets.all(20),
                   alignment:
                       lan.isEn ? Alignment.centerLeft : Alignment.centerRight,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   child: Text(
-                    lan.getTexts('drawer_name'),
+                    lan.getTexts('drawer_name').toString(),
                     style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 30,
@@ -69,16 +68,20 @@ class _MainDrawerState extends State<MainDrawer> {
                 SizedBox(
                   height: 20,
                 ),
-                buildListTile(lan.getTexts('drawer_item1'), Icons.restaurant,
+                buildListTile(
+                    lan.getTexts('drawer_item1').toString(), Icons.restaurant,
                     () {
                   Navigator.of(context)
                       .pushReplacementNamed(TabsScreen.routeName);
                 }, context),
-                buildListTile(lan.getTexts('drawer_item2'), Icons.settings, () {
+                buildListTile(
+                    lan.getTexts('drawer_item2').toString(), Icons.settings,
+                    () {
                   Navigator.of(context)
                       .pushReplacementNamed(FiltersScreen.routeName);
                 }, context),
-                buildListTile(lan.getTexts('drawer_item3'), Icons.color_lens,
+                buildListTile(
+                    lan.getTexts('drawer_item3').toString(), Icons.color_lens,
                     () {
                   Navigator.of(context)
                       .pushReplacementNamed(ThemesScreen.routeName);
@@ -92,8 +95,8 @@ class _MainDrawerState extends State<MainDrawer> {
                   padding: EdgeInsets.only(top: 20, right: 22),
                   child: Center(
                     child: Text(
-                      lan.getTexts('drawer_switch_title'),
-                      style: Theme.of(context).textTheme.headline6,
+                      lan.getTexts('drawer_switch_title').toString(),
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                 ),
@@ -103,7 +106,7 @@ class _MainDrawerState extends State<MainDrawer> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text(lan.getTexts('drawer_switch_item2')),
+                      Text(lan.getTexts('drawer_switch_item2').toString()),
                       Switch(
                         value:
                             Provider.of<LanguageProvider>(context, listen: true)
@@ -115,8 +118,8 @@ class _MainDrawerState extends State<MainDrawer> {
                         },
                       ),
                       Text(
-                        lan.getTexts('drawer_switch_item1'),
-                        style: Theme.of(context).textTheme.headline6,
+                        lan.getTexts('drawer_switch_item1').toString(),
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ],
                   ),

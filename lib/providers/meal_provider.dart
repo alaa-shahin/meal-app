@@ -20,16 +20,16 @@ class MealProvider with ChangeNotifier {
     filters = filterData;
 
     availableMeals = DUMMY_MEALS.where((meal) {
-      if (filters['gluten'] && !meal.isGlutenFree) {
+      if (filters['gluten']! && !meal.isGlutenFree) {
         return false;
       }
-      if (filters['lactose'] && !meal.isLactoseFree) {
+      if (filters['lactose']! && !meal.isLactoseFree) {
         return false;
       }
-      if (filters['vegan'] && !meal.isVegan) {
+      if (filters['vegan']! && !meal.isVegan) {
         return false;
       }
-      if (filters['vegetarian'] && !meal.isVegetarian) {
+      if (filters['vegetarian']! && !meal.isVegetarian) {
         return false;
       }
       return true;
@@ -50,10 +50,10 @@ class MealProvider with ChangeNotifier {
     availableCategory = ac;
     notifyListeners();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('gluten', filters['gluten']);
-    prefs.setBool('lactose', filters['lactose']);
-    prefs.setBool('vegan', filters['vegan']);
-    prefs.setBool('vegetarian', filters['vegetarian']);
+    prefs.setBool('gluten', filters['gluten']!);
+    prefs.setBool('lactose', filters['lactose']!);
+    prefs.setBool('vegan', filters['vegan']!);
+    prefs.setBool('vegetarian', filters['vegetarian']!);
   }
 
   void setData() async {

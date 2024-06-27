@@ -30,8 +30,8 @@ class CategoryItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(15),
         child: Text(
-          lan.getTexts('cat-$id'),
-          style: Theme.of(context).textTheme.headline6,
+          lan.getTexts('cat-$id').toString(),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(

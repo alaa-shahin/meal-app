@@ -10,12 +10,13 @@ import './categories_screen.dart';
 
 class TabsScreen extends StatefulWidget {
   static const routeName = '/';
+
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  List<Map<String, Object>> _pages;
+  late List<Map> _pages;
   int _selectedPageIndex = 0;
 
   @override
@@ -40,18 +41,18 @@ class _TabsScreenState extends State<TabsScreen> {
     _pages = [
       {
         'page': CategoriesScreen(),
-        'title': lan.getTexts('categories'),
+        'title': lan.getTexts('categories').toString(),
       },
       {
         'page': FavoritesScreen(),
-        'title': lan.getTexts('your_favorites'),
+        'title': lan.getTexts('your_favorites').toString(),
       },
     ];
     return Directionality(
       textDirection: lan.isEn ? TextDirection.ltr : TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(_pages[_selectedPageIndex]['title']),
+          title: Text(_pages[_selectedPageIndex]['title'].toString()),
         ),
         drawer: MainDrawer(),
         body: _pages[_selectedPageIndex]['page'],
@@ -59,19 +60,19 @@ class _TabsScreenState extends State<TabsScreen> {
           onTap: _selectPage,
           backgroundColor: Theme.of(context).primaryColor,
           unselectedItemColor: Colors.white,
-          selectedItemColor: Theme.of(context).accentColor,
+          selectedItemColor: Theme.of(context).colorScheme.secondary,
           currentIndex: _selectedPageIndex,
           // type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
               icon: Icon(Icons.category),
-              title: Text(lan.getTexts('categories')),
+              label: lan.getTexts('categories').toString(),
             ),
             BottomNavigationBarItem(
               backgroundColor: Theme.of(context).primaryColor,
               icon: Icon(Icons.star),
-              title: Text(lan.getTexts('your_favorites')),
+              label: lan.getTexts('your_favorites').toString(),
             ),
           ],
         ),

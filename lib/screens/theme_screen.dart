@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meal_app/providers/language_provider.dart';
 import 'package:meal_app/providers/theme_provider.dart';
@@ -19,8 +18,9 @@ class ThemesScreen extends StatefulWidget {
 
 class _ThemesScreenState extends State<ThemesScreen> {
   Future<bool> _onWillPop() {
-    return Navigator.of(context).pushReplacement(
+    Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => TabsScreen()));
+    return Future.value(true);
   }
 
   Widget buildRadioListTile(
@@ -32,7 +32,6 @@ class _ThemesScreenState extends State<ThemesScreen> {
     return RadioListTile(
       secondary: Icon(
         icon,
-        color: Theme.of(ctx).buttonColor,
       ),
       value: themeVal,
       groupValue: Provider.of<ThemeProvider>(ctx, listen: true).tm,
@@ -59,15 +58,15 @@ class _ThemesScreenState extends State<ThemesScreen> {
                   elevation: 0,
                 )
               : AppBar(
-                  title: Text(lan.getTexts('theme_appBar_title')),
+                  title: Text(lan.getTexts('theme_appBar_title').toString()),
                 ),
           body: Column(
             children: <Widget>[
               Container(
                 padding: EdgeInsets.all(20),
                 child: Text(
-                  lan.getTexts('theme_screen_title'),
-                  style: Theme.of(context).textTheme.headline6,
+                  lan.getTexts('theme_screen_title').toString(),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               Expanded(
@@ -76,15 +75,18 @@ class _ThemesScreenState extends State<ThemesScreen> {
                     Container(
                       padding: EdgeInsets.all(20),
                       child: Text(
-                        lan.getTexts('theme_mode_title'),
-                        style: Theme.of(context).textTheme.headline6,
+                        lan.getTexts('theme_mode_title').toString(),
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
-                    buildRadioListTile(ThemeMode.light,
-                        lan.getTexts('light_theme'), Icons.wb_sunny, context),
+                    buildRadioListTile(
+                        ThemeMode.light,
+                        lan.getTexts('light_theme').toString(),
+                        Icons.wb_sunny,
+                        context),
                     buildRadioListTile(
                         ThemeMode.dark,
-                        lan.getTexts('dark_theme'),
+                        lan.getTexts('dark_theme').toString(),
                         Icons.brightness_3,
                         context),
                     buildListTile(context, lan.getTexts('accent')),
@@ -111,7 +113,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
     return ListTile(
       title: Text(
         '$txt',
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       trailing: CircleAvatar(
         backgroundColor: txt == 'primary' ? primaryColor : accentColor,
@@ -139,7 +141,6 @@ class _ThemesScreenState extends State<ThemesScreen> {
                     pickerAreaHeightPercent: 0.7,
                     enableAlpha: false,
                     displayThumbColor: true,
-                    showLabel: false,
                   ),
                 ),
               );

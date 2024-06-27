@@ -1,6 +1,5 @@
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:meal_app/providers/language_provider.dart';
 import 'package:meal_app/providers/meal_provider.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +18,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.titleLarge,
         textAlign: TextAlign.center,
       ),
     );
@@ -46,7 +45,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
   }
 
   Widget buildVideo() {
-    final mealId = ModalRoute.of(context).settings.arguments as String;
+    final mealId = ModalRoute.of(context)!.settings.arguments as String;
     var url = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
     var lan = Provider.of<LanguageProvider>(context, listen: true);
     var x;
@@ -56,7 +55,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
       x = url.videoUrlAr;
     }
     YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(x),
+      initialVideoId: YoutubePlayer.convertUrlToId(x)!,
       flags: YoutubePlayerFlags(
         autoPlay: false,
         mute: false,
@@ -87,8 +86,8 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
     bool isLandScape =
         MediaQuery.of(context).orientation == Orientation.landscape;
 
-    var accentColor = Theme.of(context).accentColor;
-    final mealId = ModalRoute.of(context).settings.arguments as String;
+    var accentColor = Theme.of(context).colorScheme.secondary;
+    final mealId = ModalRoute.of(context)!.settings.arguments as String;
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
     List<String> stepsLi = lan.getTexts('steps-$mealId') as List<String>;
     var liSteps = ListView.builder(
@@ -142,7 +141,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
-                  lan.getTexts('meal-$mealId'),
+                  lan.getTexts('meal-$mealId').toString(),
                   style: TextStyle(color: Colors.white),
                 ),
                 background: Hero(
@@ -166,14 +165,15 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
                       children: <Widget>[
                         Column(
                           children: <Widget>[
-                            buildSectionTitle(
-                                context, lan.getTexts('Ingredients')),
+                            buildSectionTitle(context,
+                                lan.getTexts('Ingredients').toString()),
                             buildContainer(liIngredients, context),
                           ],
                         ),
                         Column(
                           children: <Widget>[
-                            buildSectionTitle(context, lan.getTexts('Steps')),
+                            buildSectionTitle(
+                                context, lan.getTexts('Steps').toString()),
                             buildContainer(liSteps, context),
                           ],
                         ),
@@ -181,10 +181,12 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
                     ),
                   if (isLandScape) buildVideo(),
                   if (!isLandScape)
-                    buildSectionTitle(context, lan.getTexts('Ingredients')),
+                    buildSectionTitle(
+                        context, lan.getTexts('Ingredients').toString()),
                   if (!isLandScape) buildContainer(liIngredients, context),
                   if (!isLandScape)
-                    buildSectionTitle(context, lan.getTexts('Steps')),
+                    buildSectionTitle(
+                        context, lan.getTexts('Steps').toString()),
                   if (!isLandScape) buildContainer(liSteps, context),
                   if (!isLandScape) buildVideo(),
                 ],

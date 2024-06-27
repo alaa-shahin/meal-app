@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
+import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 
 import '../main.dart';
 
@@ -19,14 +18,11 @@ class _SplashScreensState extends State<SplashScreens> {
       home: Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: Center(
-          child: SplashScreen(
-            routeName: '/',
-            backgroundColor: Colors.lightBlueAccent,
-            imageBackground: AssetImage('assets/images/a1.png'),
-            seconds: 2,
-            loadingText: Text('Loading...'),
-            loaderColor: Colors.yellow,
-            navigateAfterSeconds: MyApp(),
+          child: FlutterSplashScreen(
+            backgroundColor: Theme.of(context).primaryColor,
+            splashScreenBody: Image.asset('assets/images/a1.png'),
+            duration: Duration(seconds: 2),
+            nextScreen: MyApp(),
           ),
         ),
       ),

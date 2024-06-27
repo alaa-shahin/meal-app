@@ -604,7 +604,7 @@ class LanguageProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Object getTexts(String txt) {
+  Object? getTexts(String txt) {
     if (isEn == true) return textsEn[txt];
     return textsAr[txt];
   }
