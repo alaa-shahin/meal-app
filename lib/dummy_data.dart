@@ -121,7 +121,7 @@ const DUMMY_MEALS = const [
     affordability: Affordability.Affordable,
     complexity: Complexity.Simple,
     imageUrl:
-        'https://www.almrahonline.com/wp-content/uploads/2016/06/La-vraie-Salade-ni%C3%A7oise-1280x720.jpg',
+        'https://www.simplyrecipes.com/thmb/ex1vc9D59TSmjzrkudhbAYselcI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Nicoise-Salad-LEAD-10-3c64a6f8d5834783916a2de4e3287464.jpg',
     videoUrlAr: 'https://www.youtube.com/watch?v=VwBpHPI3Euo',
     videoUrlEn: 'https://www.youtube.com/watch?v=AZz57PwZFx8',
     duration: 20,

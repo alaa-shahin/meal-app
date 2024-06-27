@@ -19,7 +19,6 @@ class _SplashScreensState extends State<SplashScreens> {
         backgroundColor: Theme.of(context).primaryColor,
         body: Center(
           child: FlutterSplashScreen(
-            backgroundColor: Theme.of(context).primaryColor,
             splashScreenBody: Image.asset('assets/images/a1.png'),
             duration: Duration(seconds: 2),
             nextScreen: MyApp(),

@@ -89,7 +89,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
                         lan.getTexts('dark_theme').toString(),
                         Icons.brightness_3,
                         context),
-                    buildListTile(context, lan.getTexts('accent')),
+                    // buildListTile(context, lan.getTexts('accent')),
                     SizedBox(
                       height: widget.fromOnBoarding ? 80 : 0,
                     )
